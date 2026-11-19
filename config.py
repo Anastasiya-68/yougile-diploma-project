@@ -1,0 +1,5 @@
+URL = "https://ru.yougile.com/"
+API_URL = "https://ru.yougile.com/api-v2"
+EMAIL = "your_email@example.com"
+PASSWORD = "your_password"
+API_KEY = "your_api_key"
