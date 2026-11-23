@@ -25,7 +25,9 @@ def test_create_project_with_tasks(
         project_page.open_my_company()
         project_page.create_project_with_tasks(project_name)
 
-    with allure.step("Проверить, что проект открылся и его название отображается"):
+    with allure.step(
+        "Проверить, что проект открылся и его название отображается"
+    ):
         assert project_name in project_page.get_project_title()
 
 
@@ -34,7 +36,8 @@ def test_create_project_with_tasks(
 @allure.feature("Управление проектами")
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.title(
-    "UI-2: Изменение названия существующего проекта через верхнюю панель управления"
+    "UI-2: Изменение названия существующего проекта"
+    "через верхнюю панель управления"
 )
 def test_rename_project(
     auth_browser: WebDriver, project_name: str, new_project_name: str
@@ -78,7 +81,10 @@ def test_delete_task_from_column(
 @allure.suite("UI Тесты")
 @allure.feature("Мессенджер и чаты")
 @allure.severity(allure.severity_level.NORMAL)
-@allure.title("UI-4: Изменение названия группового чата проекта в разделе 'Мессенджер'")
+@allure.title(
+    "UI-4: Изменение названия группового чата проекта"
+    "в разделе 'Мессенджер'"
+)
 def test_rename_project_chat(
     auth_browser: WebDriver, project_name: str, new_chat_name: str
 ) -> None:
@@ -97,11 +103,14 @@ def test_rename_project_chat(
     with allure.step("Переименовать чат и проверить новое название в списке"):
         assert chat_page.rename_chat(new_chat_name) is True
 
+
 @allure.epic("YouGile")
 @allure.suite("UI Тесты")
 @allure.feature("Мессенджер и чаты")
 @allure.severity(allure.severity_level.CRITICAL)
-@allure.title("UI-5: Отправка текстового сообщения в чат существующего проекта")
+@allure.title(
+    "UI-5: Отправка текстового сообщения в чат существующего проекта"
+)
 def test_send_message_to_project_chat(
     auth_browser: WebDriver, project_name: str
 ) -> None:
@@ -118,5 +127,7 @@ def test_send_message_to_project_chat(
         chat_page.open_messenger()
         chat_page.open_chat(project_name)
 
-    with allure.step("Отправить сообщение и проверить его отображение в переписке"):
+    with allure.step(
+        "Отправить сообщение и проверить его отображение в переписке"
+    ):
         assert chat_page.send_message(message_text) is True

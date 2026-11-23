@@ -60,7 +60,8 @@ class ChatPage:
         """
         chat_locator = (
             By.XPATH,
-            f"//ul[contains(@class, 'chat-list')]//div[contains(., '{chat_name}')]",
+            f"//ul[contains(@class, 'chat-list')]"
+            f"//div[contains(., '{chat_name}')]",
         )
         chat_item = self.__wait.until(
             EC.element_to_be_clickable(chat_locator)
@@ -70,7 +71,7 @@ class ChatPage:
     @allure.step("Переименовать открытый чат на '{new_chat_name}'")
     def rename_chat(self, new_chat_name: str) -> bool:
         """
-        Изменяет название текущего группового чата и проверяет обновление в списке.
+        Изменяет название группового чата и проверяет обновление в списке.
 
         :param new_chat_name: новое название для чата
         :return: True, если чат с новым названием отображается в списке
@@ -94,7 +95,8 @@ class ChatPage:
 
         new_chat_locator = (
             By.XPATH,
-            f"//ul[contains(@class, 'chat-list')]//div[normalize-space()='{new_chat_name}']",
+            f"//ul[contains(@class, 'chat-list')]"
+            f"//div[normalize-space()='{new_chat_name}']",
         )
         element = self.__wait.until(
             EC.visibility_of_element_located(new_chat_locator)

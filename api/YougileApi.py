@@ -43,14 +43,14 @@ class YougileApi:
         if response.status_code == 200:
             chats = response.json()["content"]
 
-        for chat in chats:
-            if chat_name in chat["title"]:
-                chat_id = chat["id"]
-                requests.put(
-                    f"{self.url}/group-chats/{chat_id}",
-                    headers=self.headers,
-                    json={"deleted": True},
-                )
+            for chat in chats:
+                if chat_name in chat["title"]:
+                    chat_id = chat["id"]
+                    requests.put(
+                        f"{self.url}/group-chats/{chat_id}",
+                        headers=self.headers,
+                        json={"deleted": True},
+                    )
 
     @allure.step("Создать проект '{title}'")
     def create_project(
@@ -150,7 +150,6 @@ class YougileApi:
             f"{self.url}/group-chats", headers=self.headers, json=body
         )
 
-
     @allure.step("Удалить групповой чат по ID '{chat_id}'")
     def delete_group_chat(self, chat_id: str) -> requests.Response:
         return requests.put(
@@ -171,4 +170,3 @@ class YougileApi:
             headers=self.headers,
             json=body,
         )
-    

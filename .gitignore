@@ -224,3 +224,4 @@ allure-report/
 
 # VS Code
 .vscode/
+config.py

@@ -12,8 +12,10 @@ class AuthPage:
     HEADER_LOGIN_BUTTON = (By.CSS_SELECTOR, "a[role='button']")
     EMAIL_INPUT = (By.CSS_SELECTOR, "input[placeholder='example@mail.ru']")
     PASSWORD_INPUT = (By.CSS_SELECTOR, "input[placeholder='Введите пароль']")
-    FORM_LOGIN_BUTTON = (By.XPATH, "//div[@role='button' and contains(., 'Войти')]")
-
+    FORM_LOGIN_BUTTON = (
+        By.XPATH,
+        "//div[@role='button' and contains(., 'Войти')]"
+    )
 
     def __init__(self, driver: WebDriver) -> None:
         """

@@ -46,7 +46,7 @@ yougile-diploma-project/
 │   ├── test_api.py         # API-автотесты
 │   └── test_ui.py          # UI-автотесты
 ├── .gitignore              # Исключения для Git
-├── config.py               # Конфигурация (URL, учетные данные, API-ключ)
+├── config.example.py       # Шаблон конфигурации (URL, учетные данные, API-ключ)
 ├── conftest.py             # Фикстуры Pytest (инициализация браузера, подготовка и очистка данных)
 ├── pytest.ini              # Настройки запуска Pytest
 ├── README.md               # Документация проекта
@@ -75,15 +75,15 @@ yougile-diploma-project/
    pip install -r requirements.txt
    ```
 
-4. **Настройте учетные данные в файле `config.py`:**
-   Укажите актуальные данные вашей тестовой учетной записи и ключ API YouGile:
-   ```python
-   URL = "https://ru.yougile.com/"
-   API_URL = "https://ru.yougile.com/api-v2"
-   EMAIL = "your_email@example.com"
-   PASSWORD = "your_password"
-   API_KEY = "your_api_key"
+4. **Создайте файл конфигурации и заполните учетные данные:**
+   Скопируйте шаблон `config.example.py` в файл `config.py`:
+   ```bash
+   # Для Windows:
+   copy config.example.py config.py
+   # Для macOS/Linux:
+   cp config.example.py config.py
    ```
+   Откройте созданный `config.py` и впишите актуальные данные вашей тестовой учетной записи и ключ API YouGile.
 
 ## Запуск тестов и формирование отчетов
 

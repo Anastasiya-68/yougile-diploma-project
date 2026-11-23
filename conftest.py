@@ -17,6 +17,7 @@ def api_client() -> YougileApi:
     """Возвращает экземпляр API-клиента YouGile для работы с запросами."""
     return YougileApi()
 
+
 @pytest.fixture
 def browser() -> WebDriver:
     """
@@ -33,12 +34,14 @@ def browser() -> WebDriver:
 def auth_browser(browser: WebDriver) -> WebDriver:
     """
     Открывает сайт YouGile и авторизуется в системе перед началом теста.
-    Вход выполняется под учетными данными из конфигурационного файла `config.py`.
+    Вход выполняется под учетными данными
+    из конфигурационного файла `config.py`.
     """
     auth_page = AuthPage(browser)
     auth_page.open_main_page()
     auth_page.login_as(config.EMAIL, config.PASSWORD)
     return browser
+
 
 @pytest.fixture
 def project_name() -> str:
@@ -52,6 +55,7 @@ def project_name() -> str:
     api.delete_project_by_title(name)
     api.delete_chat_by_title(name)
 
+
 @pytest.fixture
 def new_project_name() -> str:
     """
@@ -64,6 +68,7 @@ def new_project_name() -> str:
     api.delete_project_by_title(name)
     api.delete_chat_by_title(name)
 
+
 @pytest.fixture
 def current_user_id(api_client: YougileApi) -> str:
     """Возвращает ID текущего пользователя компании из API."""
@@ -72,7 +77,10 @@ def current_user_id(api_client: YougileApi) -> str:
     for user in users:
         if user.get("email") == config.EMAIL:
             return user["id"]
-    return users["id"]
+    raise ValueError(
+        f"Пользователь с email '{config.EMAIL}' не найден в списке"
+    )
+
 
 @pytest.fixture
 def created_project(api_client: YougileApi) -> dict[str, str]:
@@ -87,6 +95,7 @@ def created_project(api_client: YougileApi) -> dict[str, str]:
     yield {"id": project_id, "title": title}
 
     api_client.delete_project(project_id)
+
 
 @pytest.fixture
 def created_column(
@@ -107,6 +116,7 @@ def created_column(
     column_id = column_resp.json()["id"]
 
     return {"id": column_id, "board_id": board_id}
+
 
 @pytest.fixture
 def created_chat(
@@ -140,6 +150,7 @@ def created_chat(
     yield {"id": chat_id, "title": title}
 
     api_client.delete_group_chat(chat_id)
+
 
 @pytest.fixture
 def new_chat_name() -> str:

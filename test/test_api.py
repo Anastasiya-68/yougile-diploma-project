@@ -79,7 +79,9 @@ def test_get_tasks_list(
     with allure.step("Отправить GET-запрос на получение списка задач"):
         response = api_client.get_tasks(column_id=column_id)
 
-    with allure.step("Проверить статус-код 200 и наличие созданной задачи в списке"):
+    with allure.step(
+        "Проверить статус-код 200 и наличие созданной задачи в списке"
+    ):
         assert response.status_code == 200
         body = response.json()
         assert "content" in body
@@ -131,12 +133,13 @@ def test_create_group_chat(
         api_client.delete_group_chat(body["id"])
 
 
-
 @allure.epic("YouGile")
 @allure.suite("API Тесты")
 @allure.feature("Мессенджер и чаты")
 @allure.severity(allure.severity_level.CRITICAL)
-@allure.title("API-5: Отправка текстового сообщения в чат существующего проекта")
+@allure.title(
+    "API-5: Отправка текстового сообщения в чат существующего проекта"
+)
 @pytest.mark.parametrize(
     "message_text",
     [
@@ -157,7 +160,9 @@ def test_send_message_to_chat(
             chat_id=chat_id, text=message_text
         )
 
-    with allure.step("Проверить статус-код 201 и возврат ID отправленного сообщения"):
+    with allure.step(
+        "Проверить статус-код 201 и возврат ID отправленного сообщения"
+    ):
         assert response.status_code == 201
         body = response.json()
         assert "id" in body

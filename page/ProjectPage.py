@@ -49,7 +49,7 @@ class ProjectPage:
         "//span[contains(text(),'Сохранить')]",
     )
 
-    # Локаторы для работы с задачами 
+    # Локаторы для работы с задачами
     ADD_TASK_BTN = (
         By.XPATH,
         "//span[contains(text(),'Добавить задачу')]",
@@ -134,7 +134,7 @@ class ProjectPage:
     @allure.step("Переименовать проект на '{new_name}'")
     def rename_project(self, new_name: str) -> None:
         """
-        Изменяет название текущего проекта через меню в верхней панели управления.
+        Изменяет название проекта через меню в верхней панели управления.
 
         :param new_name: новое название проекта
         """
@@ -161,7 +161,9 @@ class ProjectPage:
         save_btn.click()
 
         self.__wait.until(
-            EC.text_to_be_present_in_element(self.HEADER_PROJECT_TITLE, new_name)
+            EC.text_to_be_present_in_element(
+                self.HEADER_PROJECT_TITLE, new_name
+            )
         )
 
     @allure.step("Создать новую задачу '{task_name}' в колонке")
