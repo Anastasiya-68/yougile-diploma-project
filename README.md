@@ -62,7 +62,7 @@ yougile-diploma-project/
 
 1. **Клонируйте репозиторий и перейдите в папку проекта:**
    ```bash
-   git clone <ссылка-на-ваш-репозиторий>
+   git clone <https://github.com/Anastasiya-68/yougile-diploma-project>
    cd yougile-diploma-project
    ```
 
